@@ -35,7 +35,7 @@ jobs:
           name: code-coverage-report
           path: output/test/
       - name: Display structure of downloaded files
-        run: ls -R
+        run: tree /F
         working-directory: path/to/artifact
       - shell: bash
         run: |
