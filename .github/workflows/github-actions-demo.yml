@@ -2,7 +2,8 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  job_1:
+    name: All about Artifacts
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -17,6 +18,25 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: output/test/code-coverage.html
+
+  job_2:
+    name: All about Artifacts
+    needs: job_1
+    runs-on: windows-latest
+    steps:
+      - name: Download artifact 1
+        uses: actions/download-artifact@v3
+        with:
+          name: code-coverage-report
+      - shell: bash
+        run: |
+          value=`cat code-coverage.html`
+          expr $value \* 9 > code-coverage.html
+      - name: Upload updated ciode-coverage job 2
         uses: actions/upload-artifact@v3
         with:
           name: code-coverage-report
