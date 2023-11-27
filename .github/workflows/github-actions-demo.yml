@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   job_1:
-    name: All about Artifacts
+    name: upload Artifacts
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -24,7 +24,7 @@ jobs:
           path: output/test/code-coverage.html
 
   job_2:
-    name: All about Artifacts
+    name: download Artifacts
     needs: job_1
     runs-on: windows-latest
     steps:
@@ -34,8 +34,8 @@ jobs:
           name: code-coverage-report
       - shell: bash
         run: |
-          value=`cat code-coverage.html`
-          expr $value \* 9 > code-coverage.html
+          # value=`cat code-coverage.html`
+          expr 10 \* 9 > code-coverage.html
       - name: Upload updated ciode-coverage job 2
         uses: actions/upload-artifact@v3
         with:
