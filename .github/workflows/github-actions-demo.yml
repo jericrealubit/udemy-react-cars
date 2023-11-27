@@ -36,7 +36,7 @@ jobs:
           path: output/test/
       - name: Display structure of downloaded files
         run: tree /F
-        working-directory: path/to/artifact
+        working-directory: C:\Users\jeric\OneDrive\Documents\GitHub\udemy-react-cars\output\test
       - shell: bash
         run: |
           # value=`cat code-coverage.html`
